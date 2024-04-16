@@ -1,0 +1,74 @@
+<div class="container mt-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/list-products">Productos</a>
+                </li>
+                @if(userData.type === 'admin'){
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/orders">Pedidos</a>
+                </li>
+                }
+                @if(userData.type === 'client'){
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/cart">Cart</a>
+                </li>
+                }
+            </ul>
+        </div>
+    </nav>
+    <div class="login-form">
+        <h2 class="text-page">@if(product){Editar}
+            @else {
+            Nuevo
+            } Producto</h2>
+
+        @if(form){
+        <form [formGroup]="form" (ngSubmit)="save()">
+            <div class="form-group">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" class="form-control" formControlName="name">
+                @if(form.get('name')?.hasError('required') && form.get('name')?.touched){
+                <p class="invalid-feedback d-block">El nombre es obligatorio</p>
+                }
+            </div>
+            <div class="form-group">
+                <label for="description">Descripción:</label>
+                <input type="text" id="description" class="form-control" formControlName="description">
+                @if(form.get('description')?.hasError('required') && form.get('description')?.touched){
+                <p class="invalid-feedback d-block">La descripción es obligatorio</p>
+                }
+            </div>
+            <div class="form-group">
+                <label for="price">Precio:</label>
+                <input type="number" id="price" class="form-control" formControlName="price">
+                @if(form.get('price')?.hasError('required') && form.get('price')?.touched){
+                <p class="invalid-feedback d-block">El precio es obligatorio</p>
+                }
+            </div>
+            <div class="form-group">
+                <label for="stock">Stock:</label>
+                <input type="number" id="stock" class="form-control" formControlName="stock">
+                @if(form.get('stock')?.hasError('required') && form.get('stock')?.touched){
+                <p class="invalid-feedback d-block">El stock es obligatorio</p>
+                }
+            </div>
+
+            <div class="form-actions">
+                <button class="btn btn-primary ms-2">
+                    @if(product){Actualizar}
+                    @else {
+                    Crear
+                    } Producto
+                </button>
+                <button type="button" class="btn btn-danger" routerLink="/list-products">
+                    Cancelar
+                </button>
+            </div>
+        </form>
+        }
+    </div>
+
+
+</div>
