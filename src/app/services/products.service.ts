@@ -9,19 +9,19 @@ export class ProductsService {
   private http = inject(HttpClient)
 
   list(){
-    return this.http.get<Product[]>('http://frgaria-api-production.up.railway.app/list-products');
+    return this.http.get<Product[]>('https://frgaria-api-production.up.railway.app/list-products');
   }
 
   get(id: number){
-    return this.http.get<Product>(`http://frgaria-api-production.up.railway.app/${id}`)
+    return this.http.get<Product>(`https://frgaria-api-production.up.railway.app/${id}`)
   }
 
   create(product: Product){
-    return this.http.post<Product>('http://frgaria-api-production.up.railway.app/create-product', product)
+    return this.http.post<Product>('https://frgaria-api-production.up.railway.app/create-product', product)
   }
 
   update(id: number, product: Product){
-    return this.http.put<Product>(`http://frgaria-api-production.up.railway.app/${id}`, product)
+    return this.http.put<Product>(`https://frgaria-api-production.up.railway.app/${id}`, product)
   }
 
   delete(id: number){
